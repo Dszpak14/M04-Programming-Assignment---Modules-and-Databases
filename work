@@ -1,0 +1,32 @@
+11.1 Create a file called zoo.py. In it, define a function called hours() that prints the string 'Open 9-5 daily'. Then, use the interactive interpreter to import the zoo module and call its hours() function.
+# zoo.py
+def hours():
+    print("Open 9-5 daily")
+
+# In the interactive interpreter
+import zoo
+zoo.hours()
+
+11.2.
+
+# In the interactive interpreter
+import zoo as menagerie
+menagerie.hours()
+
+11.2 In the interactive interpreter, import the zoo module as menagerie and call its hours() function.
+import zoo as menagerie
+menagerie.hours()
+     
+16.8 Use the sqlalchemy module to connect to the sqlite3 database books.db that you just made in exercise 16.4. As in 16.6, select and print the title column from the book table in alphabetical order.
+metadata = MetaData()
+books_table = Table('book', metadata, autoload_with=engine)
+
+# Create a database connection
+with engine.connect() as connection:
+    # Select and print the title column from the book table in alphabetical order
+    query = select([books_table.c.title]).order_by(books_table.c.title)
+    result = connection.execute(query)
+
+    print("Titles in alphabetical order:")
+    for row in result:
+        print(row[0])
